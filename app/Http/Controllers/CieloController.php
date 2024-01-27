@@ -50,12 +50,14 @@ class CieloController extends Controller
             $total = $request->price;
             // Com o ID do pagamento, podemos fazer sua captura, se ela não tiver sido capturada ainda
             $captura = $this->captureSale($request->price);
-            return view('success', compact('total'));
+            return view('success', ['payment' => $payment]);
         } catch (CieloRequestException $e) {
             // Em caso de erros de integração, podemos tratar o erro aqui.
             // os códigos de erro estão todos disponíveis no manual de integração.
             $error = $e->getCieloError();
-            return view('error', compact('error'));
+            $errorCode = $error['code'];
+            $errorMessage = $error['message'];
+            return view('error', ['errorCode' => $errorCode, 'errorMessage' => $errorMessage]);
         }
     }
 

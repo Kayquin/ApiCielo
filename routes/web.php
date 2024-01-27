@@ -15,4 +15,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/peyer', 'app/Http/Controllers/CieloController@peyer')->name('peyer');
+Route::post('/peyer', 'App\Http\Controllers\CieloController@peyer')->name('peyer');
+Route::post('/payment/success', [CieloController::class, 'peyer'])->name('payment.success');
+Route::post('/payment/error', [CieloController::class, 'peyer'])->name('payment.error');
