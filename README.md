@@ -15,7 +15,7 @@ A API Cielo 3.0 é uma poderosa interface de programação de aplicativos desenv
 
 A API Cielo 3.0 suporta dois ambientes: sandbox e produção. O ambiente de sandbox é utilizado para testes e desenvolvimento, enquanto o ambiente de produção é destinado a transações reais. Certifique-se de utilizar as credenciais corretas para cada ambiente.
 
-## installation
+## Installation
 Para executar  o projeto, é necessário ter o PHP e o Composer instalados em sua máquina. Após a instalação do composer, basta rodar os comandos:
 ```
 composer install
