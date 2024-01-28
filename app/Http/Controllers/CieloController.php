@@ -30,8 +30,9 @@ class CieloController extends Controller
 
 
     public function peyer(Request $request){
-
-
+        //Método peyer para passar a variável holder para a visualização:
+        $holder = $request->input('holder');
+        
         // Crie uma instância de Customer informando o nome do cliente
         $this->sale->customer($request->holder);
 
@@ -44,21 +45,30 @@ class CieloController extends Controller
 
         // Crie o pagamento na Cielo
         try {
+            if (!$this->cielo) {
+                throw new \Exception('Cielo object is not initialized');
+            }
             // Configure o SDK com seu merchant e o ambiente apropriado para criar a venda
-            $this->createSale();
+            $payment = $this->createSale();
             
             $total = $request->price;
             // Com o ID do pagamento, podemos fazer sua captura, se ela não tiver sido capturada ainda
             $captura = $this->captureSale($request->price);
-            return view('success', ['payment' => $payment]);
+            $paymentTid = $this->getPaymentTid($payment);
+        return view('success', ['payment' => $payment, 'paymentTid' => $paymentTid, 'holder' => $holder]);
         } catch (CieloRequestException $e) {
             // Em caso de erros de integração, podemos tratar o erro aqui.
             // os códigos de erro estão todos disponíveis no manual de integração.
             $error = $e->getCieloError();
-            $errorCode = $error['code'];
-            $errorMessage = $error['message'];
-            return view('error', ['errorCode' => $errorCode, 'errorMessage' => $errorMessage]);
+            $errorCode = $error->getCode();
+            $errorMessage = $error->getMessage();
+            return view('error', ['errorCode' => $errorCode, 'errorMessage' => $errorMessage,'holder' => $holder]);
         }
+    }
+    //Método público para retornar a propriedade tid
+    public function getPaymentTid($payment)
+    {
+        return $payment->getPayment()->getPaymentId();
     }
 
     private function createSale(){

@@ -7,60 +7,85 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Introdução
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A API Cielo 3.0 é uma poderosa interface de programação de aplicativos desenvolvida pela Cielo para facilitar a integração de serviços de pagamento em plataformas web. Esta documentação fornece informações detalhadas sobre os recursos disponíveis, endpoints, parâmetros e exemplos de uso.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Ambiente
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A API Cielo 3.0 suporta dois ambientes: sandbox e produção. O ambiente de sandbox é utilizado para testes e desenvolvimento, enquanto o ambiente de produção é destinado a transações reais. Certifique-se de utilizar as credenciais corretas para cada ambiente.
 
-## Learning Laravel
+## installation
+Para executar  o projeto, é necessário ter o PHP e o Composer instalados em sua máquina. Após a instalação do composer, basta rodar os comandos:
+```
+composer install
+```
+Manualmente, vá no composer.json e adicione as seguintes linhas:
+```
+"require": {
+    "filipegar/cielo-api-3.0-php": "^1.0",
+}
+```
+Este é um dropin replacement package para a dependencia do composer developercielo/api-3.0-php. Basta alterar o pacote developercielo/api-3.0-php para filipegar/cielo-api-3.0-php e executar o update.<br> <br>
+Depois, vá no Xampp em xampp\htdocs e copie a pasta do projeto para lá.<br>
+Dê start no Apache do Xampp e pronto.<br>
+Vá no seu navegador e digite http://localhost/ApiCielo/public/
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Integração API e-commerce Cielo
+```
+FINAL DO CARTÃO	        STATUS DA TRANSAÇÃO	    CÓDIGO DE RETORNO	    MENSAGEM DE RETORNO
+XXXX.XXXX.XXXX.XXX0
+XXXX.XXXX.XXXX.XXX1
+XXXX.XXXX.XXXX.XXX4	    Autorizado	                4/6	                   Operação realizada com sucesso
+XXXX.XXXX.XXXX.XXX2	    Não Autorizado	            05	                   Não Autorizada
+XXXX.XXXX.XXXX.XXX3	    Não Autorizado	            57	                   Cartão Expirado
+XXXX.XXXX.XXXX.XXX5	    Não Autorizado	            78	                   Cartão Bloqueado
+XXXX.XXXX.XXXX.XXX6	    Não Autorizado	            99	                   Time Out
+XXXX.XXXX.XXXX.XXX7 	Não Autorizado	            77	                   Cartão Cancelado
+XXXX.XXXX.XXXX.XXX8	    Não Autorizado	            70	                   Problemas com o Cartão de Crédito
+XXXX.XXXX.XXXX.XXX9	    Autorização Aleatória	    4 a 99	               Operation Successful / Time Out
+```
+## Autenticação
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+A autenticação na API Cielo 3.0 é feita por meio de credenciais específicas para cada ambiente. As credenciais incluem o Merchant ID e a Merchant Key.<br>
+Configurações do .env:
+```
+Merchant ID: seu_merchant_id
+Merchant Key: sua_merchant_key
+```
+## Possiveis Problemas
+PHP: Vá na pasta do seu PHP, abra o php.ini e faça as seguintes alterações:
+```
+;extension=ldap
+extension=curl
+;extension=ffi
+;extension=ftp
+extension=fileinfo
+;extension=gd
+extension=gettext
+;extension=gmp
+;extension=intl
+;extension=imap
+extension=mbstring
+extension=exif
+extension=mysqli
+;extension=oci8_12c
+;extension=oci8_19
+;extension=odbc
+;extension=openssl
+;extension=pdo_firebird
+extension=pdo_mysql
+;extension=pdo_oci
+;extension=pdo_odbc
+;extension=pdo_pgsql
+extension=pdo_sqlite
+;extension=pgsql
+;extension=shmop
+;extension=soap
+;extension=sockets
+;extension=sodium
+;extension=sqlite3
+;extension=tidy
+;extension=xsl
+extension=zip
+```
