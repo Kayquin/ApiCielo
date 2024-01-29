@@ -33,6 +33,6 @@
     <p>Return Message: {{ $payment->getPayment()->getReturnMessage() }}</p>
 </body>
 <div>
-<a href='http://localhost/ApiCielo/public/'><button>Voltar</button></a>
+<button onclick="history.go(-1);">Voltar</button>
     </div>
 </html>

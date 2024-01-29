@@ -30,6 +30,6 @@
     <p>Error Message: {{ $errorMessage }}</p>
 </body>
 <div>
-<a href='http://localhost/ApiCielo/public/'><button>Voltar</button></a>
+<button onclick="history.go(-1);">Voltar</button>
     </div>
 </html>
