@@ -14,6 +14,8 @@ A API Cielo 3.0 é uma poderosa interface de programação de aplicativos desenv
 ## Ambiente
 
 A API Cielo 3.0 suporta dois ambientes: sandbox e produção. O ambiente de sandbox é utilizado para testes e desenvolvimento, enquanto o ambiente de produção é destinado a transações reais. Certifique-se de utilizar as credenciais corretas para cada ambiente.
+<br>
+Mais informações: https://developercielo.github.io/manual/cielo-ecommerce
 
 ## Installation
 Para executar  o projeto, é necessário ter o PHP e o Composer instalados em sua máquina. Após a instalação do composer, basta rodar os comandos:
@@ -26,8 +28,9 @@ Manualmente, vá no composer.json e adicione as seguintes linhas:
     "filipegar/cielo-api-3.0-php": "^1.0",
 }
 ```
-Este é um dropin replacement package para a dependencia do composer developercielo/api-3.0-php. Basta alterar o pacote developercielo/api-3.0-php para filipegar/cielo-api-3.0-php e executar o update.<br> <br>
-Depois, vá no Xampp em xampp\htdocs e copie a pasta do projeto para lá.<br>
+Este é um dropin replacement package para a dependencia do composer developercielo/api-3.0-php.
+<br>
+<br>
 Dê start no Apache do Xampp e pronto.<br>
 Vá no seu navegador e digite http://localhost/ApiCielo/public/
 
@@ -53,6 +56,10 @@ Configurações do .env:
 Merchant ID: seu_merchant_id
 Merchant Key: sua_merchant_key
 ```
+<br>
+Pegue seu ID e Key aqui: https://cadastrosandbox.cieloecommerce.cielo.com.br/?culture=en-US
+<br>
+
 ## Possiveis Problemas
 PHP: Vá na pasta do seu PHP, abra o php.ini e faça as seguintes alterações:
 ```
