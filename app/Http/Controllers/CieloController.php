@@ -50,10 +50,7 @@ class CieloController extends Controller
             }
             // Configure o SDK com seu merchant e o ambiente apropriado para criar a venda
             $payment = $this->createSale();
-            
             $total = $request->price;
-            // Com o ID do pagamento, podemos fazer sua captura, se ela não tiver sido capturada ainda
-            $captura = $this->captureSale($request->price);
             $paymentTid = $this->getPaymentTid($payment);
         return view('success', ['payment' => $payment, 'paymentTid' => $paymentTid, 'holder' => $holder]);
         } catch (CieloRequestException $e) {
@@ -62,8 +59,15 @@ class CieloController extends Controller
             $error = $e->getCieloError();
             $errorCode = $error->getCode();
             $errorMessage = $error->getMessage();
+            if ($errorCode == 308) {
+                $errorMessage = "Payment not available to capture";
+            }
             return view('error', ['errorCode' => $errorCode, 'errorMessage' => $errorMessage,'holder' => $holder]);
-        }
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return view('error', ['errorCode' => 999, 'errorMessage' => $errorMessage,'holder' => $holder]);
+        }    
+        
     }
     //Método público para retornar a propriedade tid
     public function getPaymentTid($payment)
@@ -76,7 +80,15 @@ class CieloController extends Controller
     }
 
     private function captureSale($price){
-        return ($this->cielo)->captureSale($this->paymentId(), $price, 0);
+        $paymentId = $this->paymentId();
+        $payment = $this->cielo->getPayment($paymentId);
+        $paymentStatus = $payment->getPayment()->getStatus();
+    
+        if ($paymentStatus == Payment::STATUS_AUTHORIZED || $paymentStatus == Payment::STATUS_PARTIALLY_CAPTURED) {
+            return ($this->cielo)->captureSale($paymentId, $price, 0);
+        } else {
+            throw new \Exception('Payment not available to capture');
+        }
     }
 
     private function cancelSale($price){

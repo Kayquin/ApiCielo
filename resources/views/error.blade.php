@@ -29,4 +29,7 @@
     <p>Error Code: {{ $errorCode }}</p>
     <p>Error Message: {{ $errorMessage }}</p>
 </body>
+<div>
+<a href='http://localhost/ApiCielo/public/'><button>Voltar</button></a>
+    </div>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Success</title>
+    <title>Payment</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-    <h1>Payment Success</h1>
+    <h1>Payment</h1>
     <p>Name: {{ $holder }}</p>
     <p>Payment ID: {{ $paymentTid }}</p>
     <p>Proof of Sale: {{ $payment->getPayment()->getProofOfSale() }}</p>
@@ -32,4 +32,7 @@
     <p>Return Code: {{ $payment->getPayment()->getReturnCode() }}</p>
     <p>Return Message: {{ $payment->getPayment()->getReturnMessage() }}</p>
 </body>
+<div>
+<a href='http://localhost/ApiCielo/public/'><button>Voltar</button></a>
+    </div>
 </html>
