@@ -34,6 +34,8 @@ Manualmente, vá no composer.json e adicione as seguintes linhas:
 Este é um dropin replacement package para a dependencia do composer developercielo/api-3.0-php.
 <br>
 <br>
+Vá na pasta do Xampp em xampp\htdocs e copie a pasta do projeto para lá.<br>
+<br>
 Dê start no Apache do Xampp e pronto.<br>
 Vá no seu navegador e digite http://localhost/ApiCielo/public/
 
