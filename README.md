@@ -12,7 +12,7 @@
 A API Cielo 3.0 é uma poderosa interface de programação de aplicativos desenvolvida pela Cielo para facilitar a integração de serviços de pagamento em plataformas web. Esta documentação fornece informações detalhadas sobre os recursos disponíveis, endpoints, parâmetros e exemplos de uso.
 <br>
 <br>
-<img src="https://github.com/Kayquin/ApiCielo/assets/104329791/d4a41ad9-2f69-4af1-9c5f-7df6f2288eca" />
+<img src="https://github.com/Kayquin/ApiCielo/assets/104329791/3b2e9ecb-731b-4464-8422-309324a0dce5" />
 
 ## Ambiente
 
